@@ -5,46 +5,38 @@ import org.hibernate.validator.constraints.Length
 import java.math.BigDecimal
 import java.time.LocalDate
 import javax.persistence.Entity
-import javax.persistence.Enumerated
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
 import javax.validation.constraints.NotEmpty
 import javax.validation.constraints.NotNull
 
 @Entity
-public data class TransferEntity(
+public data class TransferEntity(val created: LocalDate = LocalDate.now()) {
 
-		@Id
-		@GeneratedValue
-		val id: Long? = null,
+	@Id
+	@GeneratedValue
+	var id: Long? = null
 
-		@Length(min = 6, max = 6)
-		@NotEmpty
-		val source: String?,
+	@Length(min = 6, max = 6)
+	@NotEmpty
+	var source: String? = null
 
-		@Length(min = 6, max = 6)
-		@NotEmpty
-		val target: String?,
+	@Length(min = 6, max = 6)
+	@NotEmpty
+	var target: String? = null
 
-		@NotNull
-		@Enumerated(value = EnumType.STRING)
-		val taxType: TransferTaxType? = null,
+	@NotNull
+	var taxType: TransferTaxType? = null
 
-		val created: LocalDate = LocalDate.now(),
+	@NotNull
+	var scheduled: LocalDate? = null
 
-		@NotNull
-		val scheduled: LocalDate?,
-
-		@NotNull
-		val totalValue: BigDecimal?) {
+	@NotNull
+	var totalValue: BigDecimal? = null
 
 	@ApiModelProperty(hidden = true)
 	fun isValidValue(): Boolean {
 		return (totalValue!!.toDouble() > 0)
-	}
-
-	override fun equals(other: Any?): Boolean {
-		return other === this || (other is TransferEntity && other.id === this.id)
 	}
 
 }

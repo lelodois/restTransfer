@@ -19,7 +19,7 @@ import java.math.BigDecimal
 import java.time.LocalDateTime
 
 @RunWith(SpringRunner::class)
-@ContextConfiguration(classes = arrayOf(TransferApplication::class))
+@ContextConfiguration(classes = arrayOf(RestTransferApplication::class))
 @SpringBootTest
 @Rollback
 internal class TransferEntityTest() {
@@ -103,8 +103,8 @@ internal class TransferEntityTest() {
 
 	fun getInstance(scheduled: LocalDateTime, value: BigDecimal = BigDecimal("1500")): TransferDto {
 		var item: TransferDto = TransferDto();
-		item.source = "XPTO0921"
-		item.target = "XPTO0029"
+		item.source = "XP0921"
+		item.target = "XP0029"
 		item.scheduled = scheduled.toLocalDate()
 		item.value = value
 		return item;

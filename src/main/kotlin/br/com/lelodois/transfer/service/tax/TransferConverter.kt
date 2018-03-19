@@ -12,14 +12,15 @@ open class TransferConverter(@Autowired val first: TransferTaxSameDay) {
 
 	public fun convert(dto: TransferDto): TransferEntity {
 
-		var taxRuleFound : TransferTax = first.calculateTax(dto);
+		var taxRuleFound: TransferTax = first.calculateTax(dto);
 
-		return TransferEntity(
-				source = dto.source,
-				target = dto.target,
-				scheduled = dto.scheduled,
-				taxType = taxRuleFound.type,
-				totalValue = taxRuleFound.getResultValue()
-		)
+		var entity: TransferEntity = TransferEntity()
+		entity.source = dto.source
+		entity.target = dto.target
+		entity.scheduled = dto.scheduled
+		entity.taxType = taxRuleFound.type
+		entity.totalValue = taxRuleFound.getResultValue()
+		
+		return entity
 	}
 }

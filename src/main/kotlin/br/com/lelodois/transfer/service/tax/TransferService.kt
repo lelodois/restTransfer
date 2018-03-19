@@ -18,7 +18,7 @@ open class TransferService(val repo: TransferRepository, var context: Applicatio
 	}
 
 	fun save(dto: TransferDto): TransferEntity {
-		var converter: TransferConverter = context.getBean(TransferConverter::class.java)
+		var converter: TransferConverter = context.getBean("transferConverter") as TransferConverter
 		return repo.save(converter.convert(dto))
 	}
 }

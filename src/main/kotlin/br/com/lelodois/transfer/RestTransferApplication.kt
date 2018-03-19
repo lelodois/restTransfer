@@ -14,15 +14,14 @@ import springfox.documentation.spring.web.plugins.Docket
 import springfox.documentation.swagger2.annotations.EnableSwagger2
 
 @SpringBootApplication
-@Configuration
 @EntityScan
 @EnableSwagger2
 @EnableJpaRepositories
 @EnableTransactionManagement
-open class TransferApplication
+open class RestTransferApplication
 
 fun main(args: Array<String>) {
-	SpringApplication.run(TransferApplication::class.java, *args)
+	SpringApplication.run(Class.forName("br.com.lelodois.transfer.RestTransferApplication"), *args)
 }
 
 @Bean
