@@ -1,4 +1,5 @@
-# restTransfer
+# rest Transfer - Api rest que agenda transferências
+
 
 * Arquitetura
 * RestAPI
@@ -13,10 +14,9 @@
 
 Run app
 
-*  mvn clean package
-
+* mvn clean package
 * update project 
+* <b>http://localhost:8088/swagger-ui.html</b>
 
 
-Autor
 Leo Costa - leoeduar@gmail.com Initial work - lelodois
