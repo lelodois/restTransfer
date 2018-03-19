@@ -13,9 +13,9 @@
 
 Run app
 
-# mvn clean package
+*  mvn clean package
 
-# update project 
+* update project 
 
 
 Autor
