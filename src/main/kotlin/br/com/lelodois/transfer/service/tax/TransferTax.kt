@@ -7,29 +7,29 @@ import java.math.BigDecimal
 import java.time.LocalDateTime
 import java.time.temporal.ChronoUnit
 
-public abstract class TransferTax(val type: TransferTaxType) {
+abstract class TransferTax(val type: TransferTaxType) {
 
-	protected var result: BigDecimal? = null;
+    protected var result: BigDecimal? = null
 
-	public final fun calculateTax(transfer: TransferDto) : TransferTax{
-		if (this.attend(transfer)) {
-			this.doCalculateTax(transfer);
-			return this;
-		} else {
-			return this.next().calculateTax(transfer);
-		}
-	}
+    fun calculateTax(transfer: TransferDto): TransferTax {
+        return if (this.attend(transfer)) {
+            this.doCalculateTax(transfer)
+            this
+        } else {
+            this.next().calculateTax(transfer)
+        }
+    }
 
-	protected final fun getDaysDiff(transfer: TransferDto): Long {
-		return ChronoUnit.DAYS.between(LocalDateTime.now().toLocalDate().atStartOfDay(), transfer.scheduled?.atStartOfDay());
-	}
+    protected fun getDaysDiff(transfer: TransferDto): Long {
+        return ChronoUnit.DAYS.between(LocalDateTime.now().toLocalDate().atStartOfDay(), transfer.scheduled?.atStartOfDay());
+    }
 
-	protected abstract fun next(): TransferTax
+    protected abstract fun next(): TransferTax
 
-	protected abstract fun attend(transfer: TransferDto): Boolean
+    protected abstract fun attend(transfer: TransferDto): Boolean
 
-	protected abstract fun doCalculateTax(transfer: TransferDto)
+    protected abstract fun doCalculateTax(transfer: TransferDto)
 
-	public fun getResultValue(): BigDecimal? = result ?: throw TransferException("Result not found")
+    fun getResultValue(): BigDecimal? = result ?: throw TransferException("Result not found")
 
 }

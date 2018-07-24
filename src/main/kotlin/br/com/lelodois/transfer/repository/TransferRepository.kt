@@ -5,5 +5,4 @@ import org.springframework.data.repository.CrudRepository
 import javax.transaction.Transactional
 
 @Transactional(Transactional.TxType.MANDATORY)
-public interface TransferRepository : CrudRepository<TransferEntity, Long> {
-}
+interface TransferRepository : CrudRepository<TransferEntity, Long> 

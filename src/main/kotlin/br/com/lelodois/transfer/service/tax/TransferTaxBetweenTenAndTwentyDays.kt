@@ -8,17 +8,17 @@ import java.math.BigDecimal
 
 @Component
 @Scope("request")
-public class TransferTaxBetweenTenAndTwentyDays(val next: TransferTaxBetweenTwentyAndThirtyDays) :
-		TransferTax(TransferTaxType.AFTER_TEN_DAYS) {
+class TransferTaxBetweenTenAndTwentyDays(val next: TransferTaxBetweenTwentyAndThirtyDays) :
+        TransferTax(TransferTaxType.AFTER_TEN_DAYS) {
 
-	override fun doCalculateTax(transfer: TransferDto) {
-		var tax = transfer.value?.multiply(BigDecimal("0.08"))
-		super.result = transfer.value?.add(tax)
-	}
+    override fun doCalculateTax(transfer: TransferDto) {
+        var tax = transfer.value?.multiply(BigDecimal("0.08"))
+        super.result = transfer.value?.add(tax)
+    }
 
-	override fun attend(transfer: TransferDto): Boolean = getDaysDiff(transfer) >= 11 && getDaysDiff(transfer) <= 20
+    override fun attend(transfer: TransferDto): Boolean = getDaysDiff(transfer) in 11..20
 
-	override fun next(): TransferTax = next
+    override fun next(): TransferTax = next
 
 
 }

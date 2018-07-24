@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component
 
 @Component
 @Scope("request")
-public class TransferTaxNotFound() :
+class TransferTaxNotFound() :
 		TransferTax(TransferTaxType.NONE) {
 
 	override fun doCalculateTax(transfer: TransferDto) {

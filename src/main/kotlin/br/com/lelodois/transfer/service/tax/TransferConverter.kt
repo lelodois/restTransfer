@@ -8,19 +8,19 @@ import org.springframework.stereotype.Component
 
 @Component
 @Scope("request")
-open class TransferConverter(@Autowired val first: TransferTaxSameDay) {
+class TransferConverter(@Autowired val first: TransferTaxSameDay) {
 
-	public fun convert(dto: TransferDto): TransferEntity {
+    fun convert(dto: TransferDto): TransferEntity {
 
-		var taxRuleFound: TransferTax = first.calculateTax(dto);
+        var taxRuleFound: TransferTax = first.calculateTax(dto)
 
-		var entity: TransferEntity = TransferEntity()
-		entity.source = dto.source
-		entity.target = dto.target
-		entity.scheduled = dto.scheduled
-		entity.taxType = taxRuleFound.type
-		entity.totalValue = taxRuleFound.getResultValue()
-		
-		return entity
-	}
+        var entity = TransferEntity()
+        entity.source = dto.source
+        entity.target = dto.target
+        entity.scheduled = dto.scheduled
+        entity.taxType = taxRuleFound.type
+        entity.totalValue = taxRuleFound.getResultValue()
+
+        return entity
+    }
 }

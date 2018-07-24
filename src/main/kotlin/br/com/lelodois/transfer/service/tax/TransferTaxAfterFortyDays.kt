@@ -9,7 +9,7 @@ import java.math.BigDecimal
 
 @Component
 @Scope("request")
-public class TransferTaxAfterFortyDays(val next: TransferTaxNotFound) :
+class TransferTaxAfterFortyDays(val next: TransferTaxNotFound) :
 		TransferTax(TransferTaxType.AFTER_TEN_DAYS) {
 
 	override fun doCalculateTax(transfer: TransferDto) {

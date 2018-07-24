@@ -7,18 +7,18 @@ import org.springframework.context.ApplicationContext
 import org.springframework.stereotype.Component
 
 @Component
-open class TransferService(val repo: TransferRepository, var context: ApplicationContext) {
+class TransferService(val repo: TransferRepository, var context: ApplicationContext) {
 
-	fun all(): MutableIterable<TransferEntity>? {
-		return repo.findAll();
-	}
+    fun all(): MutableIterable<TransferEntity>? {
+        return repo.findAll()
+    }
 
-	fun retrieve(id: Long): TransferEntity? {
-		return repo.findById(id).get()
-	}
+    fun retrieve(id: Long): TransferEntity? {
+        return repo.findById(id).get()
+    }
 
-	fun save(dto: TransferDto): TransferEntity {
-		var converter: TransferConverter = context.getBean("transferConverter") as TransferConverter
-		return repo.save(converter.convert(dto))
-	}
+    fun save(dto: TransferDto): TransferEntity {
+        var converter: TransferConverter = context.getBean("transferConverter") as TransferConverter
+        return repo.save(converter.convert(dto))
+    }
 }

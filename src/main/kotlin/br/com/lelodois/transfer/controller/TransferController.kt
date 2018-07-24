@@ -21,11 +21,10 @@ class TransferController(val service: TransferService) {
 
 	@GetMapping("/get/{id}")
 	fun getOne(@PathVariable(value = "id") id: Long): ResponseEntity<TransferEntity> =
-			ResponseEntity.ok(service.retrieve(id));
+			ResponseEntity.ok(service.retrieve(id))
 
 	@PostMapping("/new")
-	fun neww(@Valid @RequestBody dto: TransferDto): ResponseEntity<TransferEntity> {
-		return ResponseEntity.ok(service.save(dto));
-	}
+	fun neww(@Valid @RequestBody dto: TransferDto): ResponseEntity<TransferEntity> =
+		ResponseEntity.ok(service.save(dto))
 
 }

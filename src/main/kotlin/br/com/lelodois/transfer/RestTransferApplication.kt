@@ -18,15 +18,15 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2
 @EnableSwagger2
 @EnableJpaRepositories
 @EnableTransactionManagement
-open class RestTransferApplication
+class RestTransferApplication
 
 fun main(args: Array<String>) {
-	SpringApplication.run(Class.forName("br.com.lelodois.transfer.RestTransferApplication"), *args)
+    SpringApplication.run(Class.forName("br.com.lelodois.transfer.RestTransferApplication"), *args)
 }
 
 @Bean
 fun myDocker(): Docket = Docket(DocumentationType.SWAGGER_2)
-		.select()
-		.apis(RequestHandlerSelectors.any())
-		.paths(PathSelectors.any())
-		.build()
+        .select()
+        .apis(RequestHandlerSelectors.any())
+        .paths(PathSelectors.any())
+        .build()
